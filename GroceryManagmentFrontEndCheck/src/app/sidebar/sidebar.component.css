@@ -1,0 +1,8 @@
+.list-group-item:hover  {
+  outline: 0;
+   background-color: #073642;
+    background: #073642;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
