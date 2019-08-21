@@ -1,4 +1,4 @@
- <app-navigation></app-navigation>
+ <app-navigation *ngIf="login && register"></app-navigation>
  <router-outlet></router-outlet>
- <app-footer></app-footer>
+ <app-footer *ngIf="login && register"></app-footer>
 <!-- <app-product></app-product> -->
