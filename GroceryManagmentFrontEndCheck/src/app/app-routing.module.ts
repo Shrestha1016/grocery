@@ -10,6 +10,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductComponent } from './product/product.component';
 import { ErrorComponent } from './error/error.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
     {path : 'login', component: LoginComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path : 'show/category/:id/products', component: ProductComponent},
     {path : 'show/all/products', component: ProductComponent},
     {path : 'logout', component: LogoutComponent},
+    {path : 'user', component: UserComponent},
     {path : '**', component: ErrorComponent}
 ]
 

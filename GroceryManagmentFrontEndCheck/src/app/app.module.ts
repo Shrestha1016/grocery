@@ -18,6 +18,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProductComponent } from './product/product.component';
 import { ErrorComponent } from './error/error.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LogoutComponent } from './logout/logout.component';
     SidebarComponent,
     ProductComponent,
     ErrorComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
