@@ -42,18 +42,14 @@ export class ProductComponent implements OnInit {
 
     }
 
-
-
-
     products: productInfo[];
-
-    //console.log(checkCategoryProduct.categoryName)
-    product : productInfo;
     categoryName: String;
-    allCategory: boolean;
-    CategoryId : number ;
+    CategoryId: number;
     ngOnInit() {
-        this.allCategory = true;
+        $(function(){
+            $('$dt').DataTable();
+        });
+        
         this.categoryInitCall();
         this.productDetailInitCall();
 
@@ -69,13 +65,6 @@ export class ProductComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.categoryName = this.categoryPass.getCategoryName();
             this.CategoryId = +params['id'];
-            if (this.categoryName == null) {
-                this.allCategory == true;
-
-            } else {
-
-                this.allCategory = false;
-            }
         });
 
 
@@ -86,31 +75,18 @@ export class ProductComponent implements OnInit {
     }
 
     productDetailInitCall() {
-
-        if (this.categoryName != null) {
-           
-            this.productDetail.getProductByIdBackend(this.CategoryId).subscribe(
-                response => this.handleSuccessfullResponse(response)
-            )
-        } else {
-            console.log("mistake");
-            this.productDetail.getallProductsFromBackend().subscribe(
-                response => this.handleSuccessfullResponse(response)
-            )
-        }
+        console.log("hello")
+        this.productDetail.getProductByIdBackend(this.CategoryId).subscribe(
+            response => this.handleSuccessfullResponse(response)
+        )
 
     }
 
+
+
     handleSuccessfullResponse(response) {
-       if(this.categoryName != null)    {
-           this.products = response;
-           console.log(this.products)
-       }    else{
-           
-            this.products = response;
-       }
-        
-       
+        this.products = response;
+        console.log(this.products);
     }
 }
 

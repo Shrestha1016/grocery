@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +20,8 @@ import { ProductComponent } from './product/product.component';
 import { ErrorComponent } from './error/error.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UserComponent } from './user/user.component';
+import { UsersidebarComponent } from './usersidebar/usersidebar.component';
+import { ProductsComponent } from './product/products/products.component';
 
 @NgModule({
   declarations: [
@@ -35,14 +38,17 @@ import { UserComponent } from './user/user.component';
     ProductComponent,
     ErrorComponent,
     LogoutComponent,
-    UserComponent
+    UserComponent,
+    UsersidebarComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     DataTablesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

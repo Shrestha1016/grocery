@@ -13,6 +13,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
+      {path : '', component: PageComponent},
     {path : 'login', component: LoginComponent},
     {path : 'page', component: PageComponent},
     {path : 'register', component: RegisterComponent},

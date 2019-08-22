@@ -8,7 +8,7 @@ import { CategorypassService } from '../Service/categorypass.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private allProduct : CategorypassService) { }
+  constructor() { }
 
 
 

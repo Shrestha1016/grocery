@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-export class productInfo {
-    constructor(
-        public id: number,
-        public code: String,
-        public name: String,
-        public brand: String,
-        public description: String,
-        public unitPrice: number,
-        public quantity: number,
-        public categoryId: number,
-        public supplierId: number,
-        public purchases: number,
-        public views: number
-    ) {
 
-    }
+export interface productInfo {
+   
+         id: number;
+         code: String;
+         name: String;
+         brand: String;
+         description: String;
+         unitPrice: number;
+         quantity: number;
+         categoryId: number;
+         supplierId: number;
+         purchases: number;
+         views: number;
+    
 }
 
 
@@ -27,12 +27,13 @@ export class ProductService {
 
     constructor( private http : HttpClient) { }
 
-    getallProductsFromBackend()    {
-       return this.http.get<productInfo[]>('http://localhost:8080/test');
+
+    getallProductsFromBackend() : Observable<productInfo[]>   {
+       return this.http.get<productInfo[]>('http://localhost:8080/allProduct');
    }
 
     getProductByIdBackend(id)    {
-       return this.http.get<productInfo>(`http://localhost:8080/show/category/${id}/products`)
+       return this.http.get<productInfo[]>(`http://localhost:8080/product/byCategoryId/${id}`)
    }
 
 

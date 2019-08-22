@@ -1,26 +1,23 @@
 <div class="container">
     <div class="row">
-        
+
         <div class="col-md-3">
             <app-sidebar></app-sidebar>
         </div>
-        
+
         <div class="col-md-9">
-            
+
             <div class="row">
                 <div class="col-md-12">
-                    <h1>This is just a check</h1>
-                   
-                    <ol class="breadcrumb" >
-                        <li><a href="/home">Home &nbsp;</a></li>
-                        <li class="active">/ {{categoryName}}</li>
+                    <ol class="breadcrumb">
+                        <li><a href="/home">Home &nbsp; </a></li>
+                        <li class="active">/ All Products</li>
                     </ol>
                 </div>
-
             </div>
 
             <div class="row">
-                
+
                 <div class="col-md-12">
                     <table class="table table-hover table-bordered table-dark">
                         <thead>
@@ -34,7 +31,7 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody    *ngFor="let iterate of products">
+                        <tbody *ngFor="let iterate of products">
                             <tr>
                                 <td>{{iterate.id}}</td>
                                 <td>{{iterate.name}}</td>
@@ -42,10 +39,11 @@
                                 <td>{{iterate.unitPrice}}</td>
                                 <td>{{iterate.quantity}}</td>
                                 <td>{{iterate.description}} </td>
-                                <td><img src="assets/{{iterate.brand}}.jpg" style="height : 100px ; width : 200px"/></td>
+                                <td><img src="assets/{{iterate.brand}}.jpg" style="height : 100px ; width : 200px" />
+                                </td>
                             </tr>
                         </tbody>
-                        
+
                     </table>
                 </div>
 
@@ -55,28 +53,3 @@
     </div>
 
 </div>
-
-
-
-<!-- <div>
-  <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{product.name}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> E-Mail </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="phone">
-      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="company">
-      <mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.company.name}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div> -->
