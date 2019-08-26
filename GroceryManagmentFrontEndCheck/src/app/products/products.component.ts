@@ -10,7 +10,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     // private sidebarData: SidebarService,
-        private productDetail: ProductService
+    private productDetail: ProductService
   ) {
 
     this.productDetailInitCall();
@@ -29,6 +29,21 @@ export class ProductsComponent implements OnInit {
 
   products: productInfo[];
 
+  output: String;
+
+  id: number;
+  code: String;
+  name: String;
+  description: String;
+  unitPrice: number;
+  quantity: number;
+  categoryId: number;
+  supplierId: number;
+  purchases: number;
+
+  product: productInfo = new productInfo()
+
+
   ngOnInit() {
     this.productDetailInitCall();
 
@@ -46,6 +61,8 @@ export class ProductsComponent implements OnInit {
     this.productDetail.getallProductsFromBackend().subscribe(
       response => this.handleSuccessfullResponse(response)
     )
+
+
 
   }
 

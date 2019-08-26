@@ -3,19 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-export interface productInfo {
+export class productInfo {
    
          id: number;
          code: String;
          name: String;
-         brand: String;
          description: String;
          unitPrice: number;
          quantity: number;
          categoryId: number;
          supplierId: number;
          purchases: number;
-         views: number;
     
 }
 
@@ -34,6 +32,18 @@ export class ProductService {
 
     getProductByIdBackend(id)    {
        return this.http.get<productInfo[]>(`http://localhost:8080/product/byCategoryId/${id}`)
+   }
+
+   addProduct( productData : productInfo) {
+        return this.http.post('http://localhost:8080/product/addProduct',productData)
+   }
+
+  updateProduct( productData : productInfo,id : number) {
+        return this.http.put(`http://localhost:8080/product/update/${id}`,productData)
+   }
+
+  deleteProduct(id)    {
+       return this.http.delete<productInfo>(`http://localhost:8080/product/byCategoryId/${id}`)
    }
 
 

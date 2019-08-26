@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../Service/user.service';
 import { userInfo } from '../Service/login.service';
+import { DebtorService, debtors } from '../Service/debtor.service';
 
 @Component({
   selector: 'app-user',
@@ -9,12 +10,17 @@ import { userInfo } from '../Service/login.service';
 })
 export class UserComponent implements OnInit {
 
-  userss : userInfo[];
+  users : userInfo[];
+  debtor : debtors[];
 
-  constructor( private userService : UserService) { }
+
+  constructor( private userService : UserService,
+                private debtorService : DebtorService
+    ) { }
 
   ngOnInit() {
     this.getAllUsers();
+  
   }
 
 
@@ -26,6 +32,17 @@ export class UserComponent implements OnInit {
   }
 
   handleSuccessfullResponse(response) {
-    this.userss = response;
+    this.users = response;
+    this.debtor = null;
   }
+
+
+  getAllDebtors() {
+    this.debtorService.getDebtorlist().subscribe (
+      response => this.debtor = response,
+      this.users = null
+    )
+  }
+
+
 }

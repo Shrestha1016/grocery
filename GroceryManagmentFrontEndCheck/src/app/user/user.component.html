@@ -6,12 +6,19 @@
         </div>
 
         <div class="col-md-9">
-
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a [routerLink]="['/user']" routerLinkActive="router-link-active" >User &nbsp; </a></li>
+                        <li class="active">/ All Users</li>
+                    </ol>
+                </div>
+            </div>
 
             <div class="row">
 
                 <div class="col-md-12">
-                    <table class="table table-hover table-bordered table-dark">
+                    <table class="table table-hover table-bordered table-dark" *ngIf="users != null">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -22,7 +29,7 @@
                                 <th scope="col">Role</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let user of userss">
+                        <tbody *ngFor="let user of users">
                             <tr>
                                 <td>{{user.id}}</td>
                                 <td>{{user.firstName}}</td>
@@ -34,6 +41,28 @@
                         </tbody>
 
                     </table>
+                    <table class="table table-hover table-bordered table-dark" *ngIf="debtor != null">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Contact</th>
+                                <th scope="col"><Address</th>
+                                <th scope="col">Rem. Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let iterate of debtor">
+                            <tr>
+                                <td>{{iterate.id}}</td>
+                                <td>{{iterate.Name}}</td>
+                                <td>{{iterate.Contact}}</td>
+                                <td>{{iterate.Address}}</td>
+                                <td>{{iterate.Amount}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
                 </div>
 
             </div>

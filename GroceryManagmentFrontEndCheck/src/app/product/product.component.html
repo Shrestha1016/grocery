@@ -27,22 +27,25 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Brand</th>
                                 <th scope="col">Price</th>
                                 <th scope="col"> Qty. Available</th>
                                 <th scope="col">description</th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+
                             </tr>
                         </thead>
                         <tbody    *ngFor="let iterate of products">
                             <tr>
                                 <td>{{iterate.id}}</td>
                                 <td>{{iterate.name}}</td>
-                                <td>{{iterate.brand}}</td>
                                 <td>{{iterate.unitPrice}}</td>
                                 <td>{{iterate.quantity}}</td>
                                 <td>{{iterate.description}} </td>
-                                <td><img src="assets/{{iterate.brand}}.jpg" style="height : 100px ; width : 200px"/></td>
+                                <td><img src="assets/{{iterate.name}}.jpg" style="height : 100px ; width : 200px"/></td>
+                                <td><button class="btn btn-success"> Update</button> </td>
+                                <td><button class="btn btn-danger"> Delete</button> </td>
                             </tr>
                         </tbody>
                         

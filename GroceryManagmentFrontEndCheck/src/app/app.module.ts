@@ -18,10 +18,11 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProductComponent } from './product/product.component';
 import { ErrorComponent } from './error/error.component';
-import { LogoutComponent } from './logout/logout.component';
 import { UserComponent } from './user/user.component';
 import { UsersidebarComponent } from './usersidebar/usersidebar.component';
-import { ProductsComponent } from './product/products/products.component';
+import { ProductsComponent } from './products/products.component';
+import { SalesComponent } from './sales/sales.component';
+import { SalessidebarComponent } from './salessidebar/salessidebar.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +38,11 @@ import { ProductsComponent } from './product/products/products.component';
     SidebarComponent,
     ProductComponent,
     ErrorComponent,
-    LogoutComponent,
     UserComponent,
     UsersidebarComponent,
-    ProductsComponent
+    ProductsComponent,
+    SalesComponent,
+    SalessidebarComponent
   ],
   imports: [
     BrowserModule,

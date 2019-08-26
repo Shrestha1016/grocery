@@ -9,8 +9,9 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductComponent } from './product/product.component';
 import { ErrorComponent } from './error/error.component';
-import { LogoutComponent } from './logout/logout.component';
 import { UserComponent } from './user/user.component';
+import { ProductsComponent } from './products/products.component';
+import { SalesComponent } from './sales/sales.component';
 
 const routes: Routes = [
       {path : '', component: PageComponent},
@@ -20,9 +21,9 @@ const routes: Routes = [
     {path : 'about', component: AboutComponent},
     {path : 'contact', component: ContactComponent},
     {path : 'show/category/:id/products', component: ProductComponent},
-    {path : 'show/all/products', component: ProductComponent},
-    {path : 'logout', component: LogoutComponent},
+    {path : 'show/all/products', component: ProductsComponent},
     {path : 'user', component: UserComponent},
+    {path : 'sales', component: SalesComponent},
     {path : '**', component: ErrorComponent}
 ]
 

@@ -1,16 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Category } from './category.service';
 
-export class sidebarCategory    { 
-    constructor(
-        public id : number,
-        public name : string,
-        public description : string,
-        public active : boolean
-    )   {
 
-    }
-}
 
 
 @Injectable({
@@ -25,12 +17,12 @@ export class SidebarService {
 
 
    allCategoryProductsBackend()    {
-       return this.http.get<sidebarCategory[]>('http://localhost:8080/show/all/products');
+       return this.http.get<Category[]>('http://localhost:8080/Category/products');
    }
 
-   categoryByIdBackendData(id)    {
-       return this.http.get<sidebarCategory>(`http://localhost:8080/show/category/${id}/products`)
-   }
+//    categoryByIdBackendData(id)    {
+//        return this.http.get<Category>(`http://localhost:8080/show/category/${id}/products`)
+//    }
 
   
    

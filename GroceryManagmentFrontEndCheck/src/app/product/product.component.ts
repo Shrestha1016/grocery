@@ -45,11 +45,27 @@ export class ProductComponent implements OnInit {
     products: productInfo[];
     categoryName: String;
     CategoryId: number;
+
+    output: String;
+
+    id: number;
+    code: String;
+    name: String;
+    description: String;
+    unitPrice: number;
+    quantity: number;
+    categoryId: number;
+    supplierId: number;
+    purchases: number;
+
+    product: productInfo = new productInfo()
+
+
     ngOnInit() {
-        $(function(){
+        $(function () {
             $('$dt').DataTable();
         });
-        
+
         this.categoryInitCall();
         this.productDetailInitCall();
 
@@ -75,10 +91,25 @@ export class ProductComponent implements OnInit {
     }
 
     productDetailInitCall() {
-        console.log("hello")
         this.productDetail.getProductByIdBackend(this.CategoryId).subscribe(
             response => this.handleSuccessfullResponse(response)
         )
+
+
+        
+
+    this.productDetail.addProduct(this.product).subscribe(
+      response => this.output = "Added Successfully", error => this.output = "Error while Adding"
+    )
+
+    this.productDetail.updateProduct(this.product, this.id).subscribe(
+      response => this.output = "Updated Successfully", error => this.output = "Error while Updating"
+    )
+
+    this.productDetail.deleteProduct(this.id).subscribe(
+      response => this.output = "Deleted Successfully", error => this.output = "Error while Deleting"
+    )
+
 
     }
 

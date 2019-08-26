@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarService, sidebarCategory } from '../Service/sidebar.service';
 import { CategorypassService } from '../Service/categorypass.service';
+import { CategoryService, Category } from '../Service/category.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,9 +9,9 @@ import { CategorypassService } from '../Service/categorypass.service';
 })
 export class SidebarComponent implements OnInit {
 
-    categories: sidebarCategory[];
+    categories: Category[];
     categoryName : String;
-  constructor(private categoryService: SidebarService,
+  constructor(private categoryService: CategoryService,
                 private passCategoryName : CategorypassService) { }
 
 

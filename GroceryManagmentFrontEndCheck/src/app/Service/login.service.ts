@@ -28,7 +28,7 @@ export class LoginService {
    }
 
   createCustomer(user: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `/create`, user);
+    return this.http.post(`${this.baseUrl}` + `/addUser`, user);
   }
 
 
