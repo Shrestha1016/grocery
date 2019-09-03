@@ -23,6 +23,12 @@ import { UsersidebarComponent } from './usersidebar/usersidebar.component';
 import { ProductsComponent } from './products/products.component';
 import { SalesComponent } from './sales/sales.component';
 import { SalessidebarComponent } from './salessidebar/salessidebar.component';
+import { CategoryComponent } from './category/category.component';
+import { DebtorComponent } from './debtor/debtor.component';
+import { SupplierComponent } from './supplier/supplier.component';
+import { CustomerComponent } from './customer/customer.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,13 @@ import { SalessidebarComponent } from './salessidebar/salessidebar.component';
     UsersidebarComponent,
     ProductsComponent,
     SalesComponent,
-    SalessidebarComponent
+    SalessidebarComponent,
+    CategoryComponent,
+    DebtorComponent,
+    SupplierComponent,
+    CustomerComponent,
+    LogoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-export class Category    {
-    constructor(
-        public id : number,
-        public name : string,
-        public description : string,
-    )   {
+export class Category {
 
-    }
+  public id: number;
+  public name: string;
+  public description: string;
 }
 
 @Injectable({
@@ -16,32 +13,32 @@ export class Category    {
 })
 export class CategoryService {
 
-  constructor(private http : HttpClient) { }
-  
-
-    allCategoryProductsBackend()    {
-       return this.http.get<Category[]>('http://localhost:8080/Category/products');
-   }
+  constructor(private http: HttpClient) { }
 
 
-  //  getUserByIdBackend(id) {
-  //   return this.http.get<Category>(`http://localhost:8080/show/User/${id}`)
-  // }
-
-  updateUser(category : Category, id : number)  {
-    return this.http.put(`http://localhost:8080/category/update/${id}`,category)
+  allCategory() {
+    return this.http.get<Category[]>('http://localhost:8080/Categories');
   }
 
 
-  addProduct( category : Category) {
-        return this.http.post('http://localhost:8080/category/addCategory',category)
-   }
+  getCategoryByIdBackend(id) {
+    return this.http.get<Category>(`http://localhost:8080/show/category/${id}`)
+  }
 
-  
+  updateCategory(category: Category, id: number) {
+    return this.http.put(`http://localhost:8080/category/update/${id}`, category)
+  }
 
-  deleteProduct(id)    {
-       return this.http.delete<Category>(`http://localhost:8080/category/Delete/${id}`)
-   }
+
+  addCategory(category: Category) {
+    return this.http.post('http://localhost:8080/category/addCategory', category)
+  }
+
+
+
+  deleteCategory(id) {
+    return this.http.delete<Category>(`http://localhost:8080/category/Delete/${id}`)
+  }
 
 
 }

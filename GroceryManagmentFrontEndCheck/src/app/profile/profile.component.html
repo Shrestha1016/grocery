@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a>User &nbsp; </a></li>
+                        <li class="active">/ Profile</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <form class="form-horizontal" role="form" (ngSubmit)="onSubmitUpdate()">
+
+                        <div class="form-group">
+                            <label for="firstName" class="col-sm-3 control-label"> First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="firstName" value="{{user.firstName}}" class="form-control"
+                                    [(ngModel)]="user.firstName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="col-sm-3 control-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="lastName" value="{{user.lastName}}" class="form-control"
+                                    [(ngModel)]="user.lastName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="email" value="{{user.email}}" class="form-control"
+                                    [(ngModel)]="user.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="col-sm-3 control-label">Role</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="role" value="{{user.role}}" class="form-control"
+                                    [(ngModel)]="user.role">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_number" class="col-sm-3 control-label"> Contact Number </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="first_name" value="{{user.contactNumber}}" class="form-control"
+                                    [(ngModel)]="user.contactNumber">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-3 control-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="password" value="{{user.password}}" class="form-control"
+                                    [(ngModel)]="user.password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="confirmPassword" value="{{user.email}}" class="form-control"
+                                    [(ngModel)]="user.confirmPassword">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success "  >Update</button>
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+       
+    </div>
+
+</div>

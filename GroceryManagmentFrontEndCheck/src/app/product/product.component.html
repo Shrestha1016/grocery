@@ -1,28 +1,22 @@
 <div class="container">
     <div class="row">
-        
+
         <div class="col-md-3">
             <app-sidebar></app-sidebar>
         </div>
-        
         <div class="col-md-9">
-            
             <div class="row">
                 <div class="col-md-12">
-                    <h1>This is just a check</h1>
-                   
-                    <ol class="breadcrumb" >
+                    <ol class="breadcrumb">
                         <li><a href="/home">Home &nbsp;</a></li>
-                        <li class="active">/ {{categoryName}}</li>
+                        <li class="active">/ {{categoryData.name}}</li>
                     </ol>
                 </div>
-
             </div>
-
             <div class="row">
-                
                 <div class="col-md-12">
-                    <table class="table table-hover table-bordered table-dark">
+                    <button class="btn btn-success topButton" *ngIf="addButton" (click)="addEventClicked()">Add Product</button>
+                    <table class="table table-hover table-bordered table-dark" *ngIf="displayClicked">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
@@ -30,56 +24,137 @@
                                 <th scope="col">Price</th>
                                 <th scope="col"> Qty. Available</th>
                                 <th scope="col">description</th>
+                                <th scope="col">Image</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-
                             </tr>
                         </thead>
-                        <tbody    *ngFor="let iterate of products">
+                        <tbody *ngFor="let iterate of  checkProducts">
                             <tr>
                                 <td>{{iterate.id}}</td>
                                 <td>{{iterate.name}}</td>
                                 <td>{{iterate.unitPrice}}</td>
                                 <td>{{iterate.quantity}}</td>
                                 <td>{{iterate.description}} </td>
-                                <td><img src="assets/{{iterate.name}}.jpg" style="height : 100px ; width : 200px"/></td>
-                                <td><button class="btn btn-success"> Update</button> </td>
-                                <td><button class="btn btn-danger"> Delete</button> </td>
+                                <td><img src="assets/{{iterate.name}}.jpg" style="height : 100px ; width : 200px" />
+                                </td>
+                                <td><button class="btn btn-success" (click)="updateEventClicked(iterate.id)">
+                                        Update</button> </td>
+                                <td><button class="btn btn-danger" (click)="deleteEventClicked(iterate.id)">
+                                        Delete</button> </td>
                             </tr>
                         </tbody>
-                        
+
                     </table>
+
+                    <form class="form-horizontal" role="form" *ngIf="updateClicked" (ngSubmit)="onSubmitUpdate()">
+                        <h2 style="">Update Product</h2>
+                        <div class="form-group">
+                            <label for="Code" class="col-sm-3 control-label">Code</label>
+                            <div class="col-sm-9">
+                                <input type="text"  name ="code" value="{{productData.code}}" class="form-control" [(ngModel)]="productData.code"
+                                    autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name ="name" value="{{productData.name}}" class="form-control"  [(ngModel)]="productData.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-3 control-label">Description </label>
+                            <div class="col-sm-9">
+                                <input type="text"  name="description" value="{{productData.description}}" class="form-control" [(ngModel)]="productData.description">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unitPrice" class="col-sm-3 control-label">Unit Price*</label>
+                            <div class="col-sm-9">
+                                <input type="number"  name ="unitPrice" value="{{productData.unitPrice}}" class="form-control" [(ngModel)]="productData.unitPrice">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-sm-3 control-label">Quantity*</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="quantity" value="{{productData.quantity}}" class="form-control" [(ngModel)]="productData.quantity">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId" class="col-sm-3 control-label">categoryId*</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="CategoryId" value="{{productData.categoryId}}" class="form-control" [(ngModel)]="productData.categoryId">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="supplierId" class="col-sm-3 control-label">SupplierID</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="supplierId" value="{{productData.supplierId}}" class="form-control" [(ngModel)]="productData.supplierId">
+                            </div>
+                        </div>
+                        
+                        
+                        <button type="submit" class="btn btn-success bottomButton" >Update</button>
+                    </form> 
+
+
+                    <!-- Add Product -->
+
+
+                    <form class="form-horizontal" role="form" *ngIf="addClicked" (ngSubmit)="onSubmitAdd()">
+                        <h2 style="">Add Product</h2>
+                        <div class="form-group">
+                            <label for="Code" class="col-sm-3 control-label">Code</label>
+                            <div class="col-sm-9">
+                                <input type="text"  name ="code" placeholder="code" class="form-control" [(ngModel)]="product.code"
+                                    autofocus>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name ="name" placeholder="name" class="form-control"  [(ngModel)]="product.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-3 control-label">Description </label>
+                            <div class="col-sm-9">
+                                <input type="text"  name="description" placeholder="description" class="form-control" name="description" [(ngModel)]="product.description">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="unitPrice" class="col-sm-3 control-label">Unit Price*</label>
+                            <div class="col-sm-9">
+                                <input type="number"  name ="unitPrice" placeholder="unitPrice" class="form-control" [(ngModel)]="product.unitPrice">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-sm-3 control-label">Quantity*</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="quantity" placeholder="quantity" class="form-control" [(ngModel)]="product.quantity">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId" class="col-sm-3 control-label">categoryId*</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="CategoryId" placeholder="categoryId" class="form-control" [(ngModel)]="product.categoryId">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="supplierId" class="col-sm-3 control-label">SupplierID</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="supplierId" placeholder="SupplierID" class="form-control" [(ngModel)]="product.supplierId">
+                            </div>
+                        </div>
+                        
+                        
+                        <button type="submit" class="btn btn-success bottomButton" style="float: left">Add Product </button>
+                    </form> 
+
                 </div>
 
-            </div>
 
+            </div>
         </div>
     </div>
-
 </div>
-
-
-
-<!-- <div>
-  <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{product.name}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> E-Mail </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="phone">
-      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="company">
-      <mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.company.name}} </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div> -->

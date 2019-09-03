@@ -19,21 +19,24 @@ export class UserService {
     return this.http.get<userInfo>(`http://localhost:8080/show/User/${id}`)
   }
 
-  updateUser(user : userInfo, id : number)  {
-    return this.http.put(`http://localhost:8080/User/update/${id}`,user)
+  updateUser(user: userInfo, id: number) {
+    return this.http.put(`http://localhost:8080/user/update/${id}`, user)
   }
 
 
-  addProduct( user : userInfo) {
-        return this.http.post('http://localhost:8080/product/addProduct',user)
-   }
+  addUser(user: userInfo) {
+    return this.http.post('http://localhost:8080/user/addUser', user)
+  }
 
-  
 
-  deleteProduct(id)    {
-       return this.http.delete<userInfo>(`http://localhost:8080/user/Delete/${id}`)
-   }
 
+  deleteUser(id) {
+    return this.http.delete<userInfo>(`http://localhost:8080/user/Delete/${id}`)
+  }
+
+  userByRole(role: String) {
+    return this.http.get<userInfo[]>(`http://localhost:8080/user/role/${role}`)
+  }
 
 
 

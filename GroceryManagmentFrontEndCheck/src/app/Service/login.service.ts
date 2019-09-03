@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { customerInfo } from './customer.service';
 
-export class userInfo   {
-        public id : number;
-        public firstName : String;
-        public lastName : String;
-        public email : String;
-        public contactNumber : String;
-        public role : String;
-        public password : String;
-        public confirmPassword : String;
+export class userInfo {
+  public id: number;
+  public firstName: String;
+  public lastName: String;
+  public email: String;
+  public contactNumber: String;
+  public role: String;
+  public password: String;
+  public confirmPassword: String;
 }
 
 
@@ -20,16 +20,23 @@ export class userInfo   {
 })
 export class LoginService {
 
-    private baseUrl = 'http://localhost:8080/user';
-
   constructor(
-      private http : HttpClient
+    private http: HttpClient
   ) {
-   }
-
-  createCustomer(user: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `/addUser`, user);
   }
 
+  user: userInfo;
+
+  getUserByEmail(email : String)  {
+   return this.http.get<userInfo>(`http://localhost:8080/user/email/${email}`);
+  }
+
+  createCustomer(customer : customerInfo) {
+    return this.http.post('http://localhost:8080/customer/addCustomer',customer)
+  }
+
+  getCustomerByEmail(email:String)  {
+    return this.http.get<customerInfo>(`http://localhost:8080/customer/email/${email}`);
+  }
 
 }

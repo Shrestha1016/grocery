@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-success topButton" *ngIf="addButton" (click)="addEventClicked()">Add Category</button>
+                    <table class="table table-hover table-bordered table-dark" *ngIf="displayClicked">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let iterate of  categories">
+                            <tr>
+                                <td>{{iterate.id}}</td>
+                                <td>{{iterate.name}}</td>
+                                <td>{{iterate.description}}</td>
+                                <td><button class="btn btn-success" (click)="updateEventClicked(iterate.id)">
+                                        Update</button> </td>
+                                <td><button class="btn btn-danger" (click)="deleteEventClicked(iterate.id)">
+                                        Delete</button> </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <form class="form-horizontal" role="form" *ngIf="updateClicked" (ngSubmit)="onSubmitUpdate()">
+                        <h2 style="">Update Debtor</h2>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="Name" value="{{category.name}}" class="form-control"
+                                    [(ngModel)]="newCategories.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Contact" class="col-sm-3 control-label">Contact </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="description" value="{{category.description}}" class="form-control"
+                                    [(ngModel)]="newCategories.description">
+                            </div>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-success bottomButton">Update</button>
+                    </form>
+
+
+                    <!-- Add Product -->
+
+
+                    <form class="form-horizontal" role="form" *ngIf="addClicked" (ngSubmit)="onSubmitAdd()">
+                        <h2 style="">Add Category</h2>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="Name" placeholder="Name" class="form-control"
+                                    [(ngModel)]="newCategories.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-3 control-label">Description </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="description" placeholder="description" class="form-control"
+                                    [(ngModel)]="newCategories.description">
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success bottomButton" style="float: left">Add Product </button>
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,12 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarService } from '../Service/sidebar.service';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { CategorypassService } from '../Service/categorypass.service';
-import { ActivatedRoute } from '@angular/router';
+// import { CategorypassService } from '../Service/categorypass.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService, productInfo } from '../Service/product.service';
+import { CategoryService, Category } from '../Service/category.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
-declare var $;
 
 @Component({
     selector: 'app-product',
@@ -17,108 +18,116 @@ declare var $;
 export class ProductComponent implements OnInit {
 
 
-    // for jquert datatable
 
-    // @ViewChild('dataTable', { static: true }) table;
-    // dataTable : any;
-    // dtOptions : any;
 
 
     constructor(
         // private sidebarData: SidebarService,
-        private categoryPass: CategorypassService,
+        // private categoryPass: CategorypassService,
         private route: ActivatedRoute,
-        private productDetail: ProductService
+        private productDetail: ProductService,
+        private categoryNameService: CategoryService,
+        private router: Router
     ) {
-
-        this.productDetailInitCall();
-
-        // setTimeout(function () {
-        //     $(function () {
-        //         $('#tableData').DataTable();
-        //     });
-        // }, 3000);
-
-
+        this.categoryInitCall()
     }
 
-    products: productInfo[];
+    checkProducts: productInfo[];
     categoryName: String;
     CategoryId: number;
 
     output: String;
 
-    id: number;
-    code: String;
-    name: String;
-    description: String;
-    unitPrice: number;
-    quantity: number;
-    categoryId: number;
-    supplierId: number;
-    purchases: number;
+    product: productInfo;
 
-    product: productInfo = new productInfo()
+    categoryData: Category;
+    updateClicked: boolean = false;
+    displayClicked: boolean = true;
+    addClicked: boolean = false;
+    addButton: boolean = true;
 
+    productData: productInfo;
 
     ngOnInit() {
-        $(function () {
-            $('$dt').DataTable();
-        });
-
         this.categoryInitCall();
-        this.productDetailInitCall();
-
-        // this.dataTable = $(this.table.nativeElement);
-        // this.dataTable.DataTable(this.dtOptions);
+        this.displayClicked = true;
+        this.product = new productInfo();
     }
-
 
 
 
     categoryInitCall() {
-
         this.route.params.subscribe(params => {
-            this.categoryName = this.categoryPass.getCategoryName();
             this.CategoryId = +params['id'];
+            this.categoryNameService.getCategoryByIdBackend(this.CategoryId).subscribe(
+                check => this.categoryData = check
+            )
         });
-
-
-        // this.sidebarData.allCategoryProductsBackend().subscribe(
-        //     response => console.log(response)
-        // )
-
+        this.productCheck();
     }
 
-    productDetailInitCall() {
+    productCheck() {
         this.productDetail.getProductByIdBackend(this.CategoryId).subscribe(
-            response => this.handleSuccessfullResponse(response)
+            response => this.checkProducts = response
+        )
+    }
+
+    updateEventClicked(id: number) {
+        this.updateClicked = true;
+        this.displayClicked = this.addClicked = this.addButton = false;
+        this.productDetail.getSingleProduct(id).subscribe(
+            response => this.productData = response
+        )
+    }
+
+    deleteEventClicked(id: number) {
+
+        this.productDetail.deleteProduct(id).subscribe(
+            response => {
+                this.output = "Deleted Successfully", error => this.output = "Error while Deleting";
+                this.displayClicked = this.addButton = true;
+                this.updateClicked = this.addClicked = false;
+                this.categoryInitCall();
+            }
+        );
+    }
+
+    onSubmitUpdate() {
+        console.log("hello");
+        console.log(this.productData.quantity);
+        this.productDetail.updateProduct(this.productData, this.productData.id).subscribe(
+
+            response => {
+                this.output = "Updated Successfully", error => this.output = "Error while Updating";
+                this.displayClicked = this.addButton = true;
+                this.updateClicked = this.addClicked = false;
+                this.categoryInitCall();
+            }
+        )
+    }
+
+    addEventClicked() {
+        this.addClicked = true;
+        this.updateClicked = this.displayClicked = this.addButton = false;
+        //this.productData = null;
+    }
+
+    onSubmitAdd() {
+        this.productDetail.addProduct(this.product).subscribe(
+            response => {
+                this.output = "Added Successfully", error => this.output = "Error while Adding";
+                this.displayClicked = this.addButton = true;
+                this.updateClicked = this.addClicked = false;
+                this.productCheck();
+            }
         )
 
-
-        
-
-    this.productDetail.addProduct(this.product).subscribe(
-      response => this.output = "Added Successfully", error => this.output = "Error while Adding"
-    )
-
-    this.productDetail.updateProduct(this.product, this.id).subscribe(
-      response => this.output = "Updated Successfully", error => this.output = "Error while Updating"
-    )
-
-    this.productDetail.deleteProduct(this.id).subscribe(
-      response => this.output = "Deleted Successfully", error => this.output = "Error while Deleting"
-    )
-
-
     }
 
 
 
-    handleSuccessfullResponse(response) {
-        this.products = response;
-        console.log(this.products);
-    }
+
+
 }
 
 

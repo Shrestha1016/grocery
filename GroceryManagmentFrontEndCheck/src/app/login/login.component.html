@@ -1,36 +1,74 @@
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
-                    <div class="card-body">
-                        <h3 class="card-title text-center">Login</h3>
+<div class="container">
+    <button class="btn btn-success" *ngIf="customerClicked" (click)="onAdminClick()" style="height : 50px; top: 0px;margin-left : 90%; margin-top : 0%;">Admin/Employee</button>
+    <div class="row" *ngIf="customerClicked">
+        
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" id="divChange">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Login</h3>
 
 
-                        <form>
-                            
-                            <div class="container">
-                                <label for="uname"><b>Username</b></label>
-                                <input type="text" placeholder="Enter Username" name="uname" [(ngModel)]="userName" required>
+                    <form>
+                        
+                        <div class="container">
+                            <h4 *ngIf="showMessage">{{message}}</h4>
+                            <label for="uname"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="uname" [(ngModel)]="userName" required>
 
-                                <label for="psw"><b>Password</b></label>
-                                <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password" required>
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password"
+                                required>
 
-                                <button type="submit" (click)="loginInfo()">Login</button>
-                                <label>
-                                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                                </label>
-                            </div>
+                            <button type="submit" (click)="customerloginInfo()" class="btnCheck">Login</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
 
-                            <div class="container" style="background-color:#f1f1f1">
-                                
-                               <button type="button" class="btn btn-info"><a [routerLink]="['/register']" style="color : white">Register</a></button>
-                            </div>
-                           
-                        </form>
+                        <div class="container" style="background-color:#f1f1f1">
+
+                            <button type="button" class="btn btn-info" class="btnCheck"><a [routerLink]="['/register']"
+                                    style="color : white">Register</a></button>
+                        </div>
+
+                    </form>
 
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+<button class="btn btn-success" (click)="onCustomerClicked()" *ngIf="adminClicked" style="height : 50px; top: 0px;margin-left : 90%; margin-top : 0%;">Customer</button>
+    <div class="row" *ngIf="adminClicked">
+        
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" >
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Login</h3>
+
+
+                    <form>
+                        <h2 *ngIf="showMessage">{{message}}</h2>
+                        <div class="container">
+                            <label for="uname"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="uname" [(ngModel)]="userName" required>
+
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password"
+                                required>
+
+                            <button type="submit" (click)="loginInfo()" class="btnCheck">Login</button>
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

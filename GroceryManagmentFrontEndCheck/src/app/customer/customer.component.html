@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+            <app-usersidebar></app-usersidebar>
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a >User &nbsp; </a></li>
+                        <li class="active">/ Customer</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="row">
+
+                <div class="col-md-12">
+                    
+                    <table class="table table-hover table-bordered table-dark" *ngIf="displayClicked">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Contact</th>
+                                <!-- <th scope="col"></th>
+                                <th scope="col"></th> -->
+
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let user of customers">
+                            <tr>
+                                <td>{{user.id}}</td>
+                                <td>{{user.firstName}}</td>
+                                <td>{{user.lastName}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.contactNumber}}</td>
+                                <!-- <td><button class="btn btn-success" (click)="updateEventClicked(user.id)">
+                                    Update</button> </td>
+                                <td><button class="btn btn-danger" (click)="deleteEventClicked(user.id)">
+                                        Delete</button> </td> -->
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                    <form class="form-horizontal" role="form" *ngIf="updateClicked" (ngSubmit)="onSubmitUpdate()">
+                        <h2 style="">Update customer</h2>
+
+                        <div class="form-group">
+                            <label for="firstName" class="col-sm-3 control-label"> First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="firstName" value="{{customer.firstName}}"
+                                    class="form-control" [(ngModel)]="customer.firstName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="col-sm-3 control-label">Last Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="lastName" value="{{customer.lastName}}" class="form-control"
+                                    [(ngModel)]="customer.lastName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-3 control-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="email" value="{{customer.email}}" class="form-control"
+                                    [(ngModel)]="customer.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_number" class="col-sm-3 control-label"> Contact Number </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="first_name" value="{{customer.contactNumber}}"
+                                    class="form-control" [(ngModel)]="customer.contactNumber">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-3 control-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="password" value="{{customer.password}}" class="form-control"
+                                    [(ngModel)]="customer.password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="confirmPassword" value="{{customer.email}}"
+                                    class="form-control" [(ngModel)]="customer.confirmPassword">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success bottomButton">Update</button>
+                    </form>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

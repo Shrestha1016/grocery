@@ -6,45 +6,109 @@
         </div>
 
         <div class="col-md-9">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <ol class="breadcrumb">
-                        <li><a href="/home">Home &nbsp; </a></li>
-                        <li class="active">/ All Products</li>
-                    </ol>
-                </div>
-            </div>
-
             <div class="row">
 
                 <div class="col-md-12">
-                    <table class="table table-hover table-bordered table-dark">
+                    <button class="btn btn-success topButton" *ngIf="addButton" (click)="addEventClicked()">Add Sale</button>
+                    <table class="table table-hover table-bordered table-dark" *ngIf="displayClicked">
                         <thead>
                             <tr>
                                 <th scope="col">Id</th>
+                                <th scope="col">Customer Name</th>
                                 <th scope="col">Item Name</th>
                                 <th scope="col">Category_Id</th>
                                 <th scope="col"> Qty</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Amount</th>
-                                <th scope = "col"></th>
-                                <th scope = "col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let iterate ">
+                        <tbody *ngFor="let iterate of sales ">
                             <tr>
                                 <td>{{iterate.id}}</td>
-                                <td>{{iterate.name}}</td>
-                                <td>{{iterate.unitPrice}}</td>
+                                <td>{{iterate.customerName}}</td> 
+                                <td>{{iterate.prod_Name}}</td>
+                                <td>{{iterate.cat_id}}</td>
                                 <td>{{iterate.quantity}}</td>
-                                <td>{{iterate.description}} </td>
-                                <td><img src="assets/{{iterate.name}}.jpg" style="height : 100px ; width : 200px" />
-                                </td>
+                                <td>{{iterate.price}} </td>
+                                <td>{{iterate.amount}} </td>
+                                <td><button class="btn btn-success" (click)="updateEventClicked(iterate.id,iterate.prod_Name)">
+                                        Update</button> </td>
+                                <td><button class="btn btn-danger" (click)="deleteEventClicked(iterate.id)">
+                                        Delete</button> </td>
                             </tr>
+                        </tbody>
+                        <tbody> 
+                            <td colspan=9></td>
+                            
+                        </tbody>
+                        <tbody > 
+                            <td colspan=7 style="text-align: center; font-size: 18pt">Total Daily Sales</td>
+                            <td colspan=2 style="text-align: center; font-size: 18pt">{{checktotalSales}}</td>
                         </tbody>
 
                     </table>
+                   
+
+                    <form class="form-horizontal" role="form" *ngIf="updateClicked" (ngSubmit)="onSubmitUpdate()">
+                        <h2 style="">Update Sale</h2>
+
+                        <div class="form-group">
+                            <label for="customerName" class="col-sm-3 control-label">Customer Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="customerName" value="{{sale.customerName}}"
+                                    class="form-control" [(ngModel)]="sale.customerName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemName" class="col-sm-3 control-label">Product Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="prod_Name" value="{{sale.prod_Name}}" class="form-control"
+                                    [(ngModel)]="sale.prod_Name" ng-change="addProductInformation()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Quantity" class="col-sm-3 control-label">Quantity</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="quantity" value="{{sale.quantity}}" class="form-control"
+                                    [(ngModel)]="sale.quantity">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success bottomButton">Update</button>
+                    </form>
+
+
+                    <!-- Add Product -->
+
+
+                    <form class="form-horizontal" role="form" *ngIf="addClicked" (ngSubmit)="onSubmitAdd()">
+                        <h2 style="">Add Sale</h2>
+                        <div class="form-group">
+                            <label for="customerName" class="col-sm-3 control-label">Customer Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="customerName" placeholder="Customer Name" class="form-control"
+                                    [(ngModel)]="newSales.customerName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">Product Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="Name" placeholder="Product Name" class="form-control"
+                                    [(ngModel)]="newSales.prod_Name" (keyup.enter)="addProductInformation()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="col-sm-3 control-label">Quantity</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="quantity" placeholder="Quantity" class="form-control"
+                                    [(ngModel)]="newSales.quantity">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success bottomButton" style="float: left">Add Sale </button>
+                    </form>
+
                 </div>
 
             </div>

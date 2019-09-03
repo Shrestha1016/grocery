@@ -2,47 +2,48 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
-export class debtors {
-    constructor(
-      public id : number,
-      public Name : String,
-      public Contact : String,
-      public Address : String,
-      public Amount : number
-    ) {
+export class Debtors {
 
-    }
+  public id: number;
+  public name: String;
+  public contact: String;
+  public address: String;
+  public remAmount: number;
+
+
+
 }
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class DebtorService {
+export class Debtorservice {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
   getDebtorlist() {
-    return this.http.get<debtors[]>('http://localhost:8080/Debtor/debtors')
+    return this.http.get<Debtors[]>('http://localhost:8080/Debtor/debtors')
   }
 
 
-  getProductByIdBackend(id)    {
-       return this.http.get<debtors[]>(`http://localhost:8080/show/debtor/${id}`)
-   }
+  getDebtorByIdBackend(id) {
+    return this.http.get<Debtors>(`http://localhost:8080/show/debtor/${id}`)
+  }
 
-   addProduct( debtorData : debtors) {
-        return this.http.post('http://localhost:8080/debtor/addDebtor',debtorData)
-   }
+  addDebtor(debtorData: Debtors) {
+    console.log(debtorData);
+    return this.http.post('http://localhost:8080/debtor/addDebtor', debtorData)
+  }
 
-  updateProduct( debtorData : debtors,id : number) {
-        return this.http.put(`http://localhost:8080/debtor/update/${id}`,debtorData)
-   }
+  updateDebtor(debtorData: Debtors, id: number) {
+    return this.http.put(`http://localhost:8080/debtor/update/${id}`, debtorData)
+  }
 
-  deleteProduct(id)    {
-       return this.http.delete<debtors>(`http://localhost:8080/debtor/Delete/${id}`)
-   }
+  deleteDebtor(id) {
+    return this.http.delete<Debtors>(`http://localhost:8080/debtor/Delete/${id}`)
+  }
 
 
 
