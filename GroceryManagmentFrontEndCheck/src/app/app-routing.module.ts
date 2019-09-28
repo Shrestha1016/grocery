@@ -22,9 +22,10 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: PageComponent,canActivate:[RouteguardService] },
   { path: 'login', component: LoginComponent },
   { path: 'page', component: PageComponent , canActivate:[RouteguardService]},
+  { path: 'home', component: PageComponent , canActivate:[RouteguardService]},
   { path: 'register', component: RegisterComponent },
   { path: 'logout', component: LogoutComponent,canActivate:[RouteguardService] },
   { path: 'about', component: AboutComponent,canActivate:[RouteguardService] },

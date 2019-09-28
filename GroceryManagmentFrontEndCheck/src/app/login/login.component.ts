@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
         this.loginService.getUserByEmail(this.userName).subscribe(
             response => {
                 this.user = response;
+                if(this.user == null)   {
+                    this.showMessage = true
+                   
+                }
                 this.Login()
             }
         )
@@ -55,9 +59,7 @@ export class LoginComponent implements OnInit {
         if (this.userName === this.user.email && this.password === this.user.password) {
             this.authenticationService.getDatas(this.user.firstName, this.user.role, this.user.id);
             this.router.navigate(['/page'])
-        } else {
-            this.showMessage = true;
-        }
+        } 
     }
 
 
@@ -71,6 +73,7 @@ export class LoginComponent implements OnInit {
                 this.user = response;
                 if(this.user == null)   {
                     this.showMessage = true
+                   return null;
                 }
                 this.Login()
             }

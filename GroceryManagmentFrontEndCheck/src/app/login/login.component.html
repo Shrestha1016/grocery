@@ -1,15 +1,21 @@
 <div class="container">
-    <button class="btn btn-success" *ngIf="customerClicked" (click)="onAdminClick()" style="height : 50px; top: 0px;margin-left : 90%; margin-top : 0%;">Admin/Employee</button>
+   
     <div class="row" *ngIf="customerClicked">
         
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" id="divChange">
-            <div class="card card-signin my-5">
+
+            <div class="card card-signin my-5" style="padding-bottom: 0%">
+                <div class="container" style="padding : 0 0 0 0">
+                    <button type="button" class="btn btn-success btn-lg active disabled"  (click)="onCustomerClicked()" data-toggle="button"   style="width : 50%; height: 120%">Customer</button>
+                    <button type="button" class="btn btn-success btn-lg " data-toggle="button"  style="width : 50%; height : 120%" (click)="onAdminClick()"   >Admin/Employee</button>
+                </div>
                 <div class="card-body">
-                    <h3 class="card-title text-center">Login</h3>
+
+                    <h3 class="card-title text-center">Customer Login</h3>
 
 
                     <form>
-                        
+
                         <div class="container">
                             <h4 *ngIf="showMessage">{{message}}</h4>
                             <label for="uname"><b>Email</b></label>
@@ -39,17 +45,21 @@
         </div>
     </div>
 
-<button class="btn btn-success" (click)="onCustomerClicked()" *ngIf="adminClicked" style="height : 50px; top: 0px;margin-left : 90%; margin-top : 0%;">Customer</button>
+    
     <div class="row" *ngIf="adminClicked">
-        
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" >
+
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
+                <div class="container" style="padding : 0 0 0 0">
+                    <button type="button" class="btn btn-success btn-lg btnUserToggle1 "  (click)="onCustomerClicked()" style=" border-top-right-radius : 0%; border-bottom-right-radius : 0%;" data-toggle="button"   >Customer</button>
+                    <button type="button" class="btn btn-success btn-lg active btnUserToggle2 disabled" data-toggle="button"   (click)="onAdminClick()" style=" border-radius : 8px; "  >Admin/Employee</button>
+                </div>
                 <div class="card-body">
-                    <h3 class="card-title text-center">Login</h3>
+                    <h3 class="card-title text-center">Admin Login</h3>
 
 
                     <form>
-                        <h2 *ngIf="showMessage">{{message}}</h2>
+                        <h4 *ngIf="showMessage">{{message}}</h4>
                         <div class="container">
                             <label for="uname"><b>Email</b></label>
                             <input type="text" placeholder="Enter Email" name="uname" [(ngModel)]="userName" required>

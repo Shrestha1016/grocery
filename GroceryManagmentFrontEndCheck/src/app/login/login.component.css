@@ -4,9 +4,9 @@
 }
 
 
-h1  {
-    text-align: center;
-    color : #007bff;
+h1 {
+  text-align: center;
+  color: #007bff;
 }
 
 
@@ -31,7 +31,8 @@ form {
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input[type=text],
+input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -48,22 +49,38 @@ button {
   cursor: pointer;
 }
 
-.btnButton  {
-  float : right ;
+.btnButton {
+  float: right;
 }
 
-.btnCheck { 
-  
+.btnCheck {
+
   padding: 14px 20px;
   margin: 8px 0;
-  
+
   width: 100%;
+}
+
+.btnUserToggle1 {
+  width: 50%;
+  height: 120%;
+  border-top-right-radius : 0%;
+  border-bottom-right-radius : 0%;
+}
+
+.btnUserToggle2 {
+  width: 50%;
+  height: 120%;
+  border-top-left-radius : 0%;
+  border-bottom-left-radius : 0%;
 }
 
 /* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;
 }
+
+
 
 
 /* Center the avatar image inside this container */
@@ -85,7 +102,7 @@ img.avatar {
 
 /* The "Forgot password" text */
 span.psw {
-  
+
   padding-top: 16px;
 }
 
@@ -95,6 +112,7 @@ span.psw {
     display: block;
     float: none;
   }
+
   .cancelbtn {
     width: 100%;
   }
@@ -119,6 +137,7 @@ span.psw {
   .form-label-group>label {
     display: none;
   }
+
   .form-label-group input::-ms-input-placeholder {
     color: #777;
   }
@@ -132,6 +151,7 @@ span.psw {
   .form-label-group>label {
     display: none;
   }
+
   .form-label-group input:-ms-input-placeholder {
     color: #777;
   }

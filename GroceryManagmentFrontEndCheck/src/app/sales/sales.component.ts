@@ -16,7 +16,7 @@ export class SalesComponent implements OnInit {
   constructor(private salesService: SalesService,
     private productService: ProductService,
     private router: Router,
-    private totalSales : TotalsalesService
+    private totalSales: TotalsalesService
   ) { }
 
   ngOnInit() {
@@ -37,12 +37,14 @@ export class SalesComponent implements OnInit {
   addButton: boolean = true;
 
   output: String;
-  checktotalSales : number = 0;
+  checktotalSales: number = 0;
 
   newSales: Sales = new Sales();
 
 
   checkSalesService() {
+    this.displayClicked = this.addButton = true;
+    this.updateClicked = this.addClicked = false;
     this.salesService.getSaleslist().subscribe(
       response => {
         this.sales = response;
@@ -51,11 +53,12 @@ export class SalesComponent implements OnInit {
     );
   }
 
-  getTotalAmount()  { 
-    for(let checkSale of this.sales )  { 
+  getTotalAmount() {
+    this.checktotalSales = 0;
+    for (let checkSale of this.sales) {
       this.checktotalSales = this.checktotalSales + checkSale.amount;
     }
-  } 
+  }
 
   updateEventClicked(id: number, name: String) {
     this.updateClicked = true;
@@ -76,8 +79,6 @@ export class SalesComponent implements OnInit {
     this.salesService.updateSales(this.sale, this.sale.id).subscribe(
       response => {
         this.output = "Updated Successfully", error => this.output = "Error while Updating";
-        this.displayClicked = this.addButton = true;
-        this.updateClicked = this.addClicked = false;
         this.checkSalesService();
       }
     )
@@ -90,29 +91,25 @@ export class SalesComponent implements OnInit {
   }
 
   onSubmitAdd() {
+    this.productService.getByName(this.newSales.prod_Name).subscribe(
+      response => this.product = response
+    )
     this.newSales.price = this.product.unitPrice;
     this.newSales.cat_id = this.product.categoryId;
     console.log(this.newSales)
     this.salesService.addSales(this.newSales).subscribe(
       response => {
         this.output = "Added Successfully", error => this.output = "Error while Adding";
-      
-        this.displayClicked = this.addButton = true;
-        this.updateClicked = this.addClicked = false;
+
         this.checkSalesService();
       }
     )
-    this.displayClicked = this.addButton = true;
-    this.updateClicked = this.addClicked = false;
-    this.router.navigateByUrl('')
   }
 
   deleteEventClicked(id: number) {
     this.salesService.deleteSales(id).subscribe(
       response => {
         this.output = "Deleted Successfully", error => this.output = "Error while Deleting";
-        this.displayClicked = this.addButton = true;
-        this.updateClicked = this.addClicked = false;
         this.checkSalesService();
       }
     )

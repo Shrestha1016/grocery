@@ -21,14 +21,16 @@
 
                             <label for="Contact"><b>Contact</b></label>
                             <input type="text" placeholder="Enter Contact" name="contact"  [(ngModel)]="user.contactNumber" required>
-
+                             <p *ngIf="contactErrorCheck">{{contactError}}</p>
 
                             <label for="psw"><b>Password</b></label>
                             <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="user.password" required>
+                            <p *ngIf="passwordErrorCheck">{{passwordError}}</p>
 
                             <label for="psw-repeat"><b>Repeat Password</b></label>
-                            <input type="password" placeholder="Repeat Password" name="psw-repeat" [(ngModel)]="user.confirmPassword" required>
-
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" oninput="checkPassword()" [(ngModel)]="user.confirmPassword" required>
+                            <p *ngIf="confirmPasswordErrorCheck">{{confirmPasswordError}}</p>
+                            
                             <label>
                                 <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">
                                 Remember me
